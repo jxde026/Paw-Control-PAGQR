@@ -1,0 +1,110 @@
+input{
+    font-family:'Bahnschrift';
+    border-color: rgb(0,100,0);
+    border: 0;
+    border-radius: 20px;
+    transition: background-color 0.5s;
+}
+input:hover{
+    background-color: rgb(88, 86, 72);
+}
+button{
+    font-family:'Bahnschrift';
+    border-color: rgb(68, 65, 57);
+}
+table {
+    font-family:'Bahnschrift';
+    background-color: rgb(136, 131, 113) ;
+    border-radius: 10px;
+    border-color: rgb(68, 65, 57);
+    text-align: center;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+th, td{
+    padding: 5px;
+    border-radius: 10px;
+}
+
+body{
+    font-family:'Bahnschrift';
+    background: url("patas.png");
+    background-repeat: repeat;
+    background-size: cover;
+ 
+    background-size: 200px 200px;
+}
+.fondo{
+    position:absolute;
+    background-color: rgba(57, 58, 57, 0.774);
+    width: 400px;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    left: 35%;
+    border-radius: 40px;
+}
+img.logo{
+    height: 30%;
+    width: 50%;
+}
+.titulos{
+    color: #000000;
+    margin: auto;
+    text-align: center;
+}
+#Boton-Volver{
+    background-color: rgb(136, 131, 113) ;
+    width: 100px;
+    height: 25px;
+    border-radius: 20px;
+    transition: background-color 0.5s;
+}
+#Boton-Volver:hover{
+    background-color: rgb(88, 86, 72);
+}
+#Boton-Buscar{
+    background-color: rgb(136, 131, 113) ;
+    width: 100px;
+    height: 25px;
+    border-radius: 20px;
+    transition: background-color 0.5s;
+}
+#Boton-Buscar:hover{
+    background-color: rgb(88, 86, 72);
+}
+#Boton-Añadir{
+    font-family:'Bahnschrift';
+    background-color: rgb(136, 131, 113) ;
+    width: 150px;
+    height: 45px;
+    border-radius: 20px;
+    transition: background-color 0.5s;
+}
+#Boton-Añadir:hover{
+    background-color: rgb(88, 86, 72);
+}
+#Boton-registrar{
+    background-color: rgb(136, 131, 113) ;
+    border-radius: 20px;
+    transition: background-color 0.5s;
+}
+#Boton-registrar:hover{
+    background-color: rgb(88, 86, 72);
+}
+#buscar{
+    background-color: rgb(255, 255, 255) ;
+    border-radius: 20px;
+}
+.lista{
+    color: #000000;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 30px;
+}
+.espacio{
+    width: 5px;
+    height: auto;
+    display: inline-block;
+}

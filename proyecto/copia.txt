@@ -1,0 +1,136 @@
+<?php
+   session_start();
+?>
+<html lang="en">
+<html>
+	<head>
+		<title>Paw Control Inicio de Sesión</title>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<link rel="stylesheet" href="style.css">
+	</head>
+	<?php
+	$conn = mysqli_connect("localhost","root","","proyecto") or die ("Error en la conexión");
+	$valor="";
+	if(isset($_REQUEST['boton'])) {
+		$boton=$_REQUEST['boton'];
+		$contraseña=$_POST['contraseña'];
+		$nombre=$_POST['nombre'];
+		$_SESSION["usuario"]=$nombre;
+		if ($boton=="Confirmar"){
+			// Consulta SQL para buscar el usuario
+			$sql = "SELECT * FROM usuarios WHERE nombreusu = '$nombre' AND contraseña = '$contraseña'";
+			$result = mysqli_query($conn,$sql);
+			 // Verificar si se encontró un resultado
+			if ($result->num_rows > 0) {
+				$_SESSION["login"]= 2 ;
+				header("Location:lista_perro.php");
+    			exit();
+    		} else {
+    			 echo "¡Nombre de usuario o contraseña incorrectos!";
+			}
+		}
+			
+		if ($boton=="Ingresar como invitado"){
+			$_SESSION["login"]= 1 ;
+			$nombre="invitado";
+			$_SESSION["usuario"]=$nombre;
+			header("Location:lista_perro.php");
+		}
+	}
+	?>
+	<body>
+		<div class="titulos">
+		<center><img class="logo" src="logo.png"></center>
+		<center><h1>Inicio de Sesión</h1></center>
+		</div>
+		<div class="formulario">
+		<form action="" method="post">
+			<font size="2" face="Bahnschrift">
+			<table border="2" align="center" >
+				<tr>
+					<td>INGRESE EL NOMBRE DE USUARIO</td>
+					<td> <input type="text" name="nombre"> </td>
+				</tr>
+				<tr>
+					<td>INGRESE LA CONTRASEÑA</td>
+					<td> <input type="text" name="contraseña"> </td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="submit" name="boton" value="Confirmar"> 
+					 	<input type="submit" name="boton" value="Ingresar como invitado">
+					 	<button id="Boton-registrar"><a href="registrar.php">Registrarse</a></button>
+					</td>
+				</tr>
+			</table>
+			</font>
+		</form>
+		</div>
+	</body>
+</html>
+---------------------------------------------
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Paw Control Registro</title>
+</head>
+<body>
+<?php
+// Conexión a la base de datos
+$conn = mysqli_connect("localhost", "root", "", "proyecto") or die("Error en la conexión: " . mysqli_connect_error());
+
+$mensaje = "";
+
+if(isset($_REQUEST['listo'])) {
+    $NomUsu = $_REQUEST['NomUsu'];
+    $ConUsu = $_REQUEST['ConUsu'];
+    $CorUsu = $_REQUEST['CorUsu'];
+    $Nom_sql = ""; 
+
+    // Verificar si el nombre de usuario ya existe
+    $checksql = "SELECT `nombreusu`, `contraseña`, `correo_electronico` FROM `usuarios` WHERE `nombreusu` = '$NomUsu'";
+    $result = mysqli_query($conn, $checksql);
+
+    if(mysqli_num_rows($result) > 0) {
+        $mensaje = "Nombre de usuario ya existe";
+    } else {
+        // Insertar nuevo usuario
+        $textsql = "INSERT INTO `usuarios` (`nombreusu`, `contraseña`, `correo_electronico`) VALUES ('$NomUsu', '$ConUsu', '$CorUsu')";
+        $consulta = mysqli_query($conn, $textsql);
+
+        if($consulta) {
+            $mensaje = "Usuario agregado correctamente";
+        } else {
+            $mensaje = "Error al agregar usuario: " . mysqli_error($conn);
+        }
+    }
+}
+?>
+<button id="Boton-Volver"><a href="index.php">Volver</a></button>
+<center><h1>Paw Control</h1></center>
+<form action="" method="POST">
+    <table border="2" align="center">
+        <th colspan="2">Ingrese sus datos</th>
+        <tr>
+            <td>Nombre de Usuario</td>
+            <td><input type="text" maxlength="50" name="NomUsu" required></td>
+        </tr>
+        <tr>
+            <td>Contraseña</td>
+            <td><input type="text" maxlength="30" name="ConUsu" required></td>
+        </tr>
+        <tr>
+            <td>Correo Electrónico</td>
+            <td><input type="text" maxlength="50" name="CorUsu" required></td>
+        </tr>
+        <tr>
+            <td><input type="submit" class="boton" name="listo" value="Listo"></td>
+            <td><?php echo $mensaje; ?></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
