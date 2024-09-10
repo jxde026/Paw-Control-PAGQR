@@ -23,42 +23,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de <?php echo $perro['nombreperro']; ?></title>
-    <style>
-        table {
-            width: 50%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .perfil-img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
 </head>
 <body>
     <button id="Boton-Volver"><a href="lista_perro.php">Volver</a></button>
     <button id='Boton-Añadir' method=POST name="editar"><a href='editar_perro.php'>Editar perfil</a></button>
+    <div class="fondo-editar">
     <h1>Perfil de <?php echo $perro['nombreperro']; ?></h1>
-    <table>
+    <table align="center" border=1>
         <tr>
             <th>Foto</th>
-            <td><img src="data:image/jpeg;base64,<?php echo base64_encode($perro['fotoperro']); ?>" alt="Foto de <?php echo $perro['nombreperro']; ?>" class="perfil-img"></td>
+            <td><img src="data:image/jpeg;base64,<?php echo base64_encode($perro['fotoperro']); ?>" alt="Foto de <?php echo $perro['nombreperro']; ?>"></td>
         </tr>
         <tr>
             <th>Nombre</th>
             <td><?php echo $perro['nombreperro']; ?></td>
         </tr>
         <tr>
-            <th>Ciudad</th>
-            <td><?php echo $perro['ciudad']; ?></td>
+            <th>Edad</th>
+            <td><?php echo $perro['Edad']; ?></td>
         </tr>
         <tr>
             <th>ID</th>
@@ -68,7 +50,45 @@
             <th>Dueño</th>
             <td><?php echo $perro['dueño']; ?></td>
         </tr>
+        <tr>
+            <th>Metodo de contacto</th>
+            <td><?php echo $perro['Metodo_contacto']; ?></td>
+        </tr>
+        <tr>
+            <td>1ra Dosis Polivalente</td>
+            <td><?php echo $perro['Primera_Polivalente']; ?></td>
+        </tr>
+        <tr>
+            <td>2da Dosis Polivalente</td>
+            <td><?php echo $perro['Segunda_Polivalente']; ?></td>
+        </tr>
+        <tr>
+            <td>Refuerzo de Polivalente</td>
+            <td><?php echo $perro['Refuerzo_Polivalente']; ?></td>
+        </tr>
+        <tr>
+            <td>Cantidad de refuerzos anuales de Polivalente</td>
+            <td><?php echo $perro['Cant_anual_poli']; ?></td>
+        </tr>
+        <tr>
+            <td>Rabia</td>
+            <td><?php echo $perro['Rabia']; ?></td>
+        </tr>
+        <tr>
+            <td>Cantidad de refuerzos anuales de Rabia</td>
+            <td><?php echo $perro['Cant_anual_rabia']; ?></td>
+        </tr>
+        <tr>
+            <td>Triple Felina</td>
+            <td><?php echo $perro['Triple_Felina']; ?></td>
+        </tr>
+        <tr>
+            <td>Refuerzo Triple Felina</td>
+            <td><?php echo $perro['Refuerzo_triple']; ?></td>
+        </tr>
     </table>
+    <br>
+    </div>
 </body>
 </html>
 <?php

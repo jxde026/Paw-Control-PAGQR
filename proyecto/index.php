@@ -49,8 +49,10 @@ session_start();
         }
     }
     ?>
-    <div class="titulos">
+    
         <center><img class="logo" src="logo.png" alt="Logo"></center>
+    <div class="fondo-sesion">
+    <div class="titulos">
         <center><h1>Inicio de Sesión</h1></center>
     </div>
     <div class="formulario">
@@ -77,5 +79,6 @@ session_start();
         </form>
         <p><?php echo $mensaje; ?></p>
     </div>
+</div>
 </body>
 </html>

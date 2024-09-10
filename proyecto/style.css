@@ -27,6 +27,11 @@ th, td{
     border-radius: 10px;
 }
 
+img{
+    max-width: 500px;
+    max-height: 400px;
+}
+
 body{
     font-family:'Bahnschrift';
     background: url("patas.png");
@@ -35,20 +40,60 @@ body{
  
     background-size: 200px 200px;
 }
+
 .fondo{
     position:absolute;
     background-color: rgba(57, 58, 57, 0.774);
-    width: 400px;
+    width: 500px;
     text-align: center;
     align-items: center;
     margin: auto;
     left: 35%;
     border-radius: 40px;
 }
+
+.fondo-lista{
+    position:absolute;
+    background-color: rgba(57, 58, 57, 0.774);
+    width: 60%;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    left: 20%;
+    border-radius: 40px;
+}
+
+.fondo-sesion{
+    position:absolute;
+    background-color: rgba(57, 58, 57, 0.774);
+    width: 500px;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    left: 37%;
+    border-radius: 40px;
+}
+.fondo-editar{
+    position:absolute;
+    background-color: rgba(57, 58, 57, 0.774);
+    width: 37%;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    left: 35%;
+    border-radius: 40px;
+}
+
 img.logo{
     height: 30%;
     width: 50%;
 }
+
+.foto-perro{
+    max-width: 200px;
+    max-height: 100px;
+}
+
 .titulos{
     color: #000000;
     margin: auto;

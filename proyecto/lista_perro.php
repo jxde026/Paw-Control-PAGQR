@@ -17,7 +17,7 @@
     <div class="texto">
     <button id="Boton-Volver"><a href="index.php">Volver</a></button>
     <br>
-    <div class="fondo">
+    <div class="fondo-lista">
     <div class="titulos">
     <?php
     echo '<h1 id="bienvenido">Bienvenido ' . $_SESSION["usuario"] . '!<h1>';
@@ -47,13 +47,25 @@
             if ($resultado->num_rows > 0) {
                 echo "<h3>Resultado de la búsqueda:</h3>";
                 echo "<table border='1'align='center'>";
-                echo "<tr><th>ID</th><th>Nombre</th><th>Ciudad</th><th>Dueño</th><th>Perfil</th></tr>";
+                echo "<tr><th>ID</th><th>Nombre</th><th>Edad</th><th>Dueño</th><th>Metodo de contacto</th>
+                <th>Primera Polivalente</th><th>Segunda Polivalente</th><th>Refuerzo de Polivalente</th><th>Cantidad anual de Polivalente</th>
+                <th>Rabia</th><th>Cantidad anual de Rabia</th><th>Triple Felina</th><th>Refuerzo de Triple Felina</th><th>Perfil</th></tr>";
                 while ($perro = $resultado->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td><img src='data:image/jpeg;base64," . base64_encode($perro['fotoperro']) . "' alt='Foto de " . $perro['nombreperro'] . "' class='foto-perro'></td>";
                     echo "<td>{$perro['codigoperro']}</td>";
                     echo "<td>{$perro['nombreperro']}</td>";
-                    echo "<td>{$perro['ciudad']}</td>";
+                    echo "<td>{$perro['Edad']}</td>";
                     echo "<td>{$perro['dueño']}</td>";
+                    echo "<td>{$perro['Metodo_contacto']}</td>";
+                    echo "<td>{$perro['Primera_Polivalente']}</td>";
+                    echo "<td>{$perro['Segunda_Polivalente']}</td>";
+                    echo "<td>{$perro['Refuerzo_Polivalente']}</td>";
+                    echo "<td>{$perro['Cant_anual_poli']}</td>";
+                    echo "<td>{$perro['Rabia']}</td>";
+                    echo "<td>{$perro['Cant_anual_rabia']}</td>";
+                    echo "<td>{$perro['Triple_Felina']}</td>";
+                    echo "<td>{$perro['Refuerzo_triple']}</td>";
                     echo "<td><a class='boton-ver-perfil' href='perfil_perro.php?codigoperro={$perro['codigoperro']}'>Ver perfil</a></td>"; // Botón para ver perfil del perro
                     echo "</tr>";
                 }
@@ -88,13 +100,25 @@
                     if ($resultado->num_rows > 0) {
                         echo "<h3>Resultado de la búsqueda:</h3>";
                         echo "<table border='1'align='center'>";
-                        echo "<tr><th>ID</th><th>Nombre</th><th>Ciudad</th><th>Dueño</th><th>Perfil</th></tr>";
+                        echo "<tr><th>ID</th><th>Nombre</th><th>Edad</th><th>Dueño</th><th>Metodo de contacto</th>
+                <th>Primera Polivalente</th><th>Segunda Polivalente</th><th>Refuerzo de Polivalente</th><th>Cantidad anual de Polivalente</th>
+                <th>Rabia</th><th>Cantidad anual de Rabia</th><th>Triple Felina</th><th>Refuerzo de Triple Felina</th><th>Perfil</th></tr>";
                         while ($perro = $resultado->fetch_assoc()) {
                             echo "<tr>";
+                            echo "<td><img src='data:image/jpeg;base64," . base64_encode($perro['fotoperro']) . "' alt='Foto de " . $perro['nombreperro'] . "' class='foto-perro'></td>";
                             echo "<td>{$perro['codigoperro']}</td>";
                             echo "<td>{$perro['nombreperro']}</td>";
-                            echo "<td>{$perro['ciudad']}</td>";
+                            echo "<td>{$perro['Edad']}</td>";
                             echo "<td>{$perro['dueño']}</td>";
+                            echo "<td>{$perro['Metodo_contacto']}</td>";
+                            echo "<td>{$perro['Primera_Polivalente']}</td>";
+                            echo "<td>{$perro['Segunda_Polivalente']}</td>";
+                            echo "<td>{$perro['Refuerzo_Polivalente']}</td>";
+                            echo "<td>{$perro['Cant_anual_poli']}</td>";
+                            echo "<td>{$perro['Rabia']}</td>";
+                            echo "<td>{$perro['Cant_anual_rabia']}</td>";
+                            echo "<td>{$perro['Triple_Felina']}</td>";
+                            echo "<td>{$perro['Refuerzo_triple']}</td>";
                             echo "<td><a class='boton-ver-perfil' href='perfil_perro.php?codigoperro={$perro['codigoperro']}'>Ver perfil</a></td>"; // Botón para ver perfil del perro
                             echo "</tr>";
                         }
@@ -110,10 +134,20 @@
         <br><br>
         <table  align="center" border=1>
             <tr>
+                <th>Foto</th>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Ciudad</th>
+                <th>Edad</th>
                 <th>Dueño</th>
+                <th>Metodo de contacto</th>
+                <th>Primera Polivalente</th>
+                <th>Segunda Polivalente</th>
+                <th>Refuerzo de Polivalente</th>
+                <th>Cantidad anual de Polivalente</th>
+                <th>Rabia</th>
+                <th>Cantidad anual de Rabia</th>
+                <th>Triple Felina</th>
+                <th>Refuerzo de Triple Felina</th>
                 <?php
                 if ($_SESSION["usuario"]!="invitado") {
                     echo "<th>Perfil</th>";
@@ -130,10 +164,20 @@
                 // Mostrar cada perro en una fila de la tabla
                 while ($fila = $resultado->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td><img src='data:image/jpeg;base64," . base64_encode($fila['fotoperro']) . "' alt='Foto de " . $fila['nombreperro'] . "' class='foto-perro'></td>";
                     echo "<td>{$fila['codigoperro']}</td>";
                     echo "<td>{$fila['nombreperro']}</td>";
-                    echo "<td>{$fila['ciudad']}</td>";
+                    echo "<td>{$fila['Edad']}</td>";
                     echo "<td>{$fila['dueño']}</td>";
+                    echo "<td>{$fila['Metodo_contacto']}</td>";
+                    echo "<td>{$fila['Primera_Polivalente']}</td>";
+                    echo "<td>{$fila['Segunda_Polivalente']}</td>";
+                    echo "<td>{$fila['Refuerzo_Polivalente']}</td>";
+                    echo "<td>{$fila['Cant_anual_poli']}</td>";
+                    echo "<td>{$fila['Rabia']}</td>";
+                    echo "<td>{$fila['Cant_anual_rabia']}</td>";
+                    echo "<td>{$fila['Triple_Felina']}</td>";
+                    echo "<td>{$fila['Refuerzo_triple']}</td>";
                     if($nombre==$fila['dueño']){
                         $_SESSION["idperro"]=$fila['codigoperro']  ;
                         echo "<td><a class='boton-ver-perfil' href='perfil_perro.php'>Ver perfil</a></td>"; // Botón para ver perfil del perro
