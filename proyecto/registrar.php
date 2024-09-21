@@ -41,6 +41,7 @@ if (isset($_POST['listo'])) {
 }
 ?>
 <button id="Boton-Volver"><a href="index.php">Volver</a></button>
+<div class="fondo">
 <center><h1>Paw Control</h1></center>
 <form action="" method="POST">
     <table border="2" align="center">
@@ -68,6 +69,8 @@ if (isset($_POST['listo'])) {
             </tr>
         </tbody>
     </table>
+    <br>
 </form>
+</div>
 </body>
 </html>

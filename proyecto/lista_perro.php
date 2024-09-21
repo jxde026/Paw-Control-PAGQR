@@ -1,5 +1,12 @@
 <?php 
     session_start(); // esto tiene que estar al comienzo si o si
+
+    if (!isset($_SESSION['usuario'])) {
+        // si no inicio sesion se lo redirecciona al login
+        session_destroy();
+        header("Location: index.php");
+        exit();
+    }
 ?>  
 <html lang="en">
 <head>
@@ -11,17 +18,23 @@
 <?php
 	$conn = mysqli_connect("localhost","root","","proyecto") or die ("Error en la conexión");
 ?>
-<body>  
-<?php
-echo "Bienvenido " . $_SESSION["usuario"] . "!";
-?>
-    <button id="Boton-Volver"><a href="index.php">Volver</a></button> 
+<body>
+ 
+ 
+    <div class="texto">
+    <button id="Boton-Volver"><a href="index.php">Volver</a></button>
+    <br>
+    <div class="fondo-lista">
     <div class="titulos">
+    <?php
+    echo '<h1 id="bienvenido">Bienvenido ' . $_SESSION["usuario"] . '!<h1>';
+    ?>
+    
 	<h1>Paw Control</h1>
 	<h2>Buscar mascota por ID</h2>
     <form method="POST">
         <label for="codigoperro">ID:</label>
-        <input type="text" id="codigoperro" name="codigoperro">
+        <input id="buscar" type="text" id="codigoperro" name="codigoperro">
         <button type="submit" id="Boton-Buscar" name='buscar'>Buscar</button>
     </form>
 
@@ -41,13 +54,17 @@ echo "Bienvenido " . $_SESSION["usuario"] . "!";
             if ($resultado->num_rows > 0) {
                 echo "<h3>Resultado de la búsqueda:</h3>";
                 echo "<table border='1'align='center'>";
-                echo "<tr><th>ID</th><th>Nombre</th><th>Ciudad</th><th>Dueño</th><th>Perfil</th></tr>";
+                echo "<tr><th>ID</th><th>Nombre</th><th>Edad</th><th>Dueño</th><th>Metodo de contacto</th>
+                <th>Primera Polivalente</th><th>Segunda Polivalente</th><th>Refuerzo de Polivalente</th><th>Cantidad anual de Polivalente</th>
+                <th>Rabia</th><th>Cantidad anual de Rabia</th><th>Triple Felina</th><th>Refuerzo de Triple Felina</th><th>Perfil</th></tr>";
                 while ($perro = $resultado->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td><img src='data:image/jpeg;base64," . base64_encode($perro['fotoperro']) . "' alt='Foto de " . $perro['nombreperro'] . "' class='foto-perro'></td>";
                     echo "<td>{$perro['codigoperro']}</td>";
                     echo "<td>{$perro['nombreperro']}</td>";
-                    echo "<td>{$perro['ciudad']}</td>";
+                    echo "<td>{$perro['Edad']}</td>";
                     echo "<td>{$perro['dueño']}</td>";
+                    echo "<td>{$perro['Metodo_contacto']}</td>";
                     echo "<td><a class='boton-ver-perfil' href='perfil_perro.php?codigoperro={$perro['codigoperro']}'>Ver perfil</a></td>"; // Botón para ver perfil del perro
                     echo "</tr>";
                 }
@@ -61,6 +78,7 @@ echo "Bienvenido " . $_SESSION["usuario"] . "!";
     }
     ?>
     </div>
+    
     <div class="lista">
         <h1>Lista de mascotas</h1> 
         <?php
@@ -81,13 +99,17 @@ echo "Bienvenido " . $_SESSION["usuario"] . "!";
                     if ($resultado->num_rows > 0) {
                         echo "<h3>Resultado de la búsqueda:</h3>";
                         echo "<table border='1'align='center'>";
-                        echo "<tr><th>ID</th><th>Nombre</th><th>Ciudad</th><th>Dueño</th><th>Perfil</th></tr>";
+                        echo "<tr><th>ID</th><th>Nombre</th><th>Edad</th><th>Dueño</th><th>Metodo de contacto</th>
+                <th>Primera Polivalente</th><th>Segunda Polivalente</th><th>Refuerzo de Polivalente</th><th>Cantidad anual de Polivalente</th>
+                <th>Rabia</th><th>Cantidad anual de Rabia</th><th>Triple Felina</th><th>Refuerzo de Triple Felina</th><th>Perfil</th></tr>";
                         while ($perro = $resultado->fetch_assoc()) {
                             echo "<tr>";
+                            echo "<td><img src='data:image/jpeg;base64," . base64_encode($perro['fotoperro']) . "' alt='Foto de " . $perro['nombreperro'] . "' class='foto-perro'></td>";
                             echo "<td>{$perro['codigoperro']}</td>";
                             echo "<td>{$perro['nombreperro']}</td>";
-                            echo "<td>{$perro['ciudad']}</td>";
+                            echo "<td>{$perro['Edad']}</td>";
                             echo "<td>{$perro['dueño']}</td>";
+                            echo "<td>{$perro['Metodo_contacto']}</td>";
                             echo "<td><a class='boton-ver-perfil' href='perfil_perro.php?codigoperro={$perro['codigoperro']}'>Ver perfil</a></td>"; // Botón para ver perfil del perro
                             echo "</tr>";
                         }
@@ -101,12 +123,14 @@ echo "Bienvenido " . $_SESSION["usuario"] . "!";
             }
         ?>
         <br><br>
-        <table border="1" align="center">
+        <table  align="center" border=1>
             <tr>
+                <th>Foto</th>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Ciudad</th>
+                <th>Edad</th>
                 <th>Dueño</th>
+                <th>Metodo de contacto</th>
                 <?php
                 if ($_SESSION["usuario"]!="invitado") {
                     echo "<th>Perfil</th>";
@@ -123,13 +147,15 @@ echo "Bienvenido " . $_SESSION["usuario"] . "!";
                 // Mostrar cada perro en una fila de la tabla
                 while ($fila = $resultado->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td><img src='data:image/jpeg;base64," . base64_encode($fila['fotoperro']) . "' alt='Foto de " . $fila['nombreperro'] . "' class='foto-perro'></td>";
                     echo "<td>{$fila['codigoperro']}</td>";
                     echo "<td>{$fila['nombreperro']}</td>";
-                    echo "<td>{$fila['ciudad']}</td>";
+                    echo "<td>{$fila['Edad']}</td>";
                     echo "<td>{$fila['dueño']}</td>";
+                    echo "<td>{$fila['Metodo_contacto']}</td>";
                     if($nombre==$fila['dueño']){
                         $_SESSION["idperro"]=$fila['codigoperro']  ;
-                        echo "<td><a class='boton-ver-perfil' href='perfil_perro.php'>Ver perfil</a></td>"; // Botón para ver perfil del perro
+                        echo "<td><a class='boton-ver-perfil' href='perfil_perro.php?id={$fila['codigoperro']}'>Ver perfil</a></td>"; // Link con ID de mascota
                         echo "</tr>";
                     }
                 }
@@ -138,6 +164,8 @@ echo "Bienvenido " . $_SESSION["usuario"] . "!";
             }
             ?>
         </table>
-    </div>
+    </div>    
+</div>
+</div>
 </body>
 </html>

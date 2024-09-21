@@ -1,5 +1,6 @@
 <?php
 session_start();
+unset($_SESSION['usuario']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,8 +50,10 @@ session_start();
         }
     }
     ?>
-    <div class="titulos">
+    
         <center><img class="logo" src="logo.png" alt="Logo"></center>
+    <div class="fondo-sesion">
+    <div class="titulos">
         <center><h1>Inicio de Sesión</h1></center>
     </div>
     <div class="formulario">
@@ -59,11 +62,11 @@ session_start();
                 <table border="2" align="center">
                     <tr>
                         <td>INGRESE EL NOMBRE DE USUARIO</td>
-                        <td><input type="text" name="nombre" required></td>
+                        <td><input type="text" name="nombre"></td>
                     </tr>
                     <tr>
                         <td>INGRESE LA CONTRASEÑA</td>
-                        <td><input type="password" name="contraseña" required></td>
+                        <td><input type="password" name="contraseña"></td>
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
@@ -77,5 +80,6 @@ session_start();
         </form>
         <p><?php echo $mensaje; ?></p>
     </div>
+</div>
 </body>
 </html>
