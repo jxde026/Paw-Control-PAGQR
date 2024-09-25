@@ -3,18 +3,30 @@
 ?> 
 <link rel="stylesheet" href="style.css">
 <?php
+    if ($_SESSION['usuario']=="") {
+        session_destroy(); // termina la sesion
+        header("Location: index.php"); // redirige al login
+        exit(); // el codigo deja de correr luego del redirect
+    }
+
+
     $conn = mysqli_connect("localhost","root","","proyecto") or die ("Error en la conexión");
-    $codigoperro = $_SESSION["idperro"];
+    $usuario = $_SESSION["usuario"];
+    $mascota_id = intval($_GET['id']); //convertir a integer para evitar inyeccion de sql
 
     // Consulta para obtener la información del perro por su ID
     $sql = "SELECT * FROM perros WHERE codigoperro = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $codigoperro);
+    $stmt->bind_param("i", $mascota_id);
     $stmt->execute();
     $resultado = $stmt->get_result();
 
     if ($resultado->num_rows > 0) {
         $perro = $resultado->fetch_assoc();
+        if ($perro['dueño'] != $usuario){
+            header("Location: lista_perro.php");
+            exit();
+        }
         // Mostrar el perfil completo del perro
     ?>
 <!DOCTYPE html>

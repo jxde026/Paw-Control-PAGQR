@@ -1,5 +1,12 @@
 <?php 
     session_start(); // esto tiene que estar al comienzo si o si
+    
+    if (!isset($_SESSION['usuario'])) {
+        // si no inicio sesion se lo redirecciona al login
+        session_destroy();
+        header("Location: index.php");
+        exit();
+    }
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +46,7 @@
             // Insertar nuevo perro
             $textsql = "INSERT INTO `perros` 
             (`nombreperro`, `Edad`, `codigoperro`, `Metodo_contacto`, `dueño`, `Primera_Polivalente`, `Segunda_Polivalente`, `Refuerzo_Polivalente`, `Cant_anual_poli`, `Rabia`, `Cant_anual_rabia`, `Triple_Felina`, `Refuerzo_triple`) 
-            VALUES ('$NomPer', '$IDPer', '$Contacto', '$NomUsu', '$PriPol', '$SegPol', '$RefPol', '$AnuPol', '$Rab', '$AnuRab', '$TriFel', '$RefTri')";
+            VALUES ('$NomPer', '$EdaPer', '$IDPer', '$Contacto', '$NomUsu', '$PriPol', '$SegPol', '$RefPol', '$AnuPol', '$Rab', '$AnuRab', '$TriFel', '$RefTri')";
             $consulta = mysqli_query($conn, $textsql);
 
             if ($consulta) {

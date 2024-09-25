@@ -1,5 +1,12 @@
 <?php 
 session_start(); // Esto tiene que estar al comienzo sí o sí
+
+if (!isset($_SESSION['usuario'])) {
+    // si no inicio sesion se lo redirecciona al login
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +32,8 @@ session_start(); // Esto tiene que estar al comienzo sí o sí
             $perro = mysqli_fetch_assoc($result);
                 $NomPer = $perro['nombreperro'];
                 $EdaPer = $perro['Edad'];
-                $NomUsu = $perro['codigoperro'];
-                $IDPer = $perro['dueño'];
+                $IDPer = $perro['codigoperro'];
+                $NomUsu = $perro['dueño'];
                 $Contacto = $perro['Metodo_contacto'];
                 $PriPol = $perro['Primera_Polivalente'];
                 $SegPol = $perro['Segunda_Polivalente'];
@@ -48,7 +55,7 @@ session_start(); // Esto tiene que estar al comienzo sí o sí
         $NomPer = $_POST['NomPer'];
         $EdaPer = $_POST['EdaPer'];
         $NomUsu = $_POST['NomUsu'];
-        $IDPer = $_POST['IDPer'];
+        $newIDPer = $_POST['IDPer'];
         $Contacto = $_POST['Contacto'];
         $PriPol = $_POST['PriPol'];
         $SegPol = $_POST['SegPol'];
@@ -63,7 +70,7 @@ session_start(); // Esto tiene que estar al comienzo sí o sí
         $checksql = "SELECT `codigoperro` FROM `perros` WHERE `codigoperro` = '$newIDPer' AND `codigoperro` != '$IDPer'";
         $result = mysqli_query($conn, $checksql);
 
-        if (mysqli_num_rows($result) > 0) {
+        if (mysqli_num_rows($result) < 0) {
             $mensaje = "La nueva ID ya existe. No se pueden realizar los cambios.";
         } else {
             // Actualizar perfil existente con la nueva ID

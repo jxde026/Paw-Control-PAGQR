@@ -1,5 +1,6 @@
 <?php
 session_start();
+unset($_SESSION['usuario']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
