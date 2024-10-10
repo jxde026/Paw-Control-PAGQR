@@ -16,27 +16,34 @@ $mensaje = "";
 if (isset($_POST['listo'])) {
     $NomUsu = $_POST['NomUsu'];
     $ConUsu = $_POST['ConUsu'];
+    $ConfConUsu = $_POST['ConfConUsu'];  // Nueva variable
     $CorUsu = $_POST['CorUsu'];
 
-    // Verificar si el nombre de usuario ya existe
-    $checksql = "SELECT `nombreusu` FROM `usuarios` WHERE `nombreusu` = '$NomUsu'";
-    $result = mysqli_query($conn, $checksql);
+    // Verificar si las contraseñas coinciden
+    if ($ConUsu === $ConfConUsu) {
+        // Verificar si el nombre de usuario ya existe
+        $checksql = "SELECT `nombreusu` FROM `usuarios` WHERE `nombreusu` = '$NomUsu'";
+        $result = mysqli_query($conn, $checksql);
 
-    if (mysqli_num_rows($result) > 0) {
-        $mensaje = "Nombre de usuario ya existe";
-    } else {
-        // Encriptar la contraseña
-        $hashContraseña = password_hash($ConUsu, PASSWORD_DEFAULT);
-
-        // Insertar nuevo usuario
-        $textsql = "INSERT INTO `usuarios` (`nombreusu`, `contraseña`, `correo_electronico`) VALUES ('$NomUsu', '$hashContraseña', '$CorUsu')";
-        $consulta = mysqli_query($conn, $textsql);
-
-        if ($consulta) {
-            $mensaje = "Usuario agregado correctamente";
+        if (mysqli_num_rows($result) > 0) {
+            $mensaje = "Nombre de usuario ya existe";
         } else {
-            $mensaje = "Error al agregar usuario: " . mysqli_error($conn);
+            // Encriptar la contraseña
+            $hashContraseña = password_hash($ConUsu, PASSWORD_DEFAULT);
+
+            // Insertar nuevo usuario
+            $textsql = "INSERT INTO `usuarios` (`nombreusu`, `contraseña`, `correo_electronico`) VALUES ('$NomUsu', '$hashContraseña', '$CorUsu')";
+            $consulta = mysqli_query($conn, $textsql);
+
+            if ($consulta) {
+                $mensaje = "Usuario agregado correctamente";
+            } else {
+                $mensaje = "Error al agregar usuario: " . mysqli_error($conn);
+            }
         }
+    } else {
+        // Las contraseñas no coinciden
+        $mensaje = "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.";
     }
 }
 ?>
@@ -58,6 +65,10 @@ if (isset($_POST['listo'])) {
             <tr>
                 <td>Contraseña</td>
                 <td><input type="password" maxlength="30" name="ConUsu" required></td>
+            </tr>
+            <tr>
+                <td>Confirmar Contraseña</td>
+                <td><input type="password" maxlength="30" name="ConfConUsu" required></td>
             </tr>
             <tr>
                 <td>Correo Electrónico</td>
