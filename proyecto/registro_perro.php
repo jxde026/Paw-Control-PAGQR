@@ -19,7 +19,7 @@
 <body>
 <?php
     // Conexión a la base de datos
-    $conn = mysqli_connect("localhost", "root", "", "proyecto") or die("Error en la conexión: " . mysqli_connect_error());
+    $conn = mysqli_connect("sql311.infinityfree.com", "if0_37488786", "XpzOBiDgIP", "if0_37488786_proyecto") or die("Error en la conexión");
 
     $mensaje = "";
 

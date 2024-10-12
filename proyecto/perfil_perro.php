@@ -10,7 +10,7 @@
     }
 
 
-    $conn = mysqli_connect("localhost","root","","proyecto") or die ("Error en la conexión");
+    $conn = mysqli_connect("sql311.infinityfree.com", "if0_37488786", "XpzOBiDgIP", "if0_37488786_proyecto") or die("Error en la conexión");
     $usuario = $_SESSION["usuario"];
     $mascota_id = intval($_GET['id']); //convertir a integer para evitar inyeccion de sql
 
