@@ -20,6 +20,7 @@
 <?php
     // Conexión a la base de datos
     $conn = mysqli_connect("sql311.infinityfree.com", "if0_37488786", "XpzOBiDgIP", "if0_37488786_proyecto") or die("Error en la conexión");
+    mysqli_set_charset($conn, "utf8mb4");
 
     $mensaje = "";
 
@@ -46,7 +47,7 @@
             // Insertar nuevo perro
             $textsql = "INSERT INTO `perros` 
             (`nombreperro`, `Edad`, `codigoperro`, `Metodo_contacto`, `dueño`, `Primera_Polivalente`, `Segunda_Polivalente`, `Refuerzo_Polivalente`, `Cant_anual_poli`, `Rabia`, `Cant_anual_rabia`, `Triple_Felina`, `Refuerzo_triple`) 
-            VALUES ('$NomPer', '$IDPer', '$Contacto', '$NomUsu', '$PriPol', '$SegPol', '$RefPol', '$AnuPol', '$Rab', '$AnuRab', '$TriFel', '$RefTri')";
+            VALUES ('$NomPer', ' $EdaPer', '$IDPer', '$Contacto', '$NomUsu', '$PriPol', '$SegPol', '$RefPol', '$AnuPol', '$Rab', '$AnuRab', '$TriFel', '$RefTri')";
             $consulta = mysqli_query($conn, $textsql);
 
             if ($consulta) {
@@ -94,6 +95,7 @@
 
 <!-- Formulario combinado para datos del perro e imagen -->
 <form action="" method="POST" enctype="multipart/form-data">
+    <div style='overflow-x:auto;'>
     <table border="2" align="center">
         <th colspan="2">Datos del Perro</th>
         <tr>
@@ -160,6 +162,7 @@
             <td><?php echo $mensaje; ?></td>
         </tr>
     </table>
+    </div>
 </form>
 <br>
 </div>
