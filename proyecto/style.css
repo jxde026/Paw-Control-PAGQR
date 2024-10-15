@@ -1,20 +1,21 @@
-input{
-    font-family:'Bahnschrift';
+/* Default Styles (for desktop and larger screens) */
+input {
+    font-family: 'Bahnschrift';
     border-color: rgb(0,100,0);
     border: 0;
     border-radius: 20px;
     transition: background-color 0.5s;
 }
-input:hover{
+input:hover {
     background-color: rgb(88, 86, 72);
 }
-button{
-    font-family:'Bahnschrift';
+button {
+    font-family: 'Bahnschrift';
     border-color: rgb(68, 65, 57);
 }
 table {
-    font-family:'Bahnschrift';
-    background-color: rgb(136, 131, 113) ;
+    font-family: 'Bahnschrift';
+    background-color: rgb(136, 131, 113);
     border-radius: 10px;
     border-color: rgb(68, 65, 57);
     text-align: center;
@@ -22,27 +23,26 @@ table {
     border-collapse: collapse;
 }
 
-th, td{
+th, td {
     padding: 5px;
     border-radius: 10px;
 }
 
-img{
+img {
     max-width: 500px;
     max-height: 400px;
 }
 
-body{
-    font-family:'Bahnschrift';
+body {
+    font-family: 'Bahnschrift';
     background: url("patas.png");
     background-repeat: repeat;
     background-size: cover;
- 
     background-size: 200px 200px;
 }
 
-.fondo{
-    position:absolute;
+.fondo {
+    position: absolute;
     background-color: rgba(57, 58, 57, 0.774);
     width: 500px;
     text-align: center;
@@ -52,8 +52,8 @@ body{
     border-radius: 40px;
 }
 
-.fondo-lista{
-    position:absolute;
+.fondo-lista {
+    position: absolute;
     background-color: rgba(57, 58, 57, 0.774);
     width: 60%;
     text-align: center;
@@ -63,8 +63,8 @@ body{
     border-radius: 40px;
 }
 
-.fondo-sesion{
-    position:absolute;
+.fondo-sesion {
+    position: absolute;
     background-color: rgba(57, 58, 57, 0.774);
     width: 500px;
     text-align: center;
@@ -73,8 +73,9 @@ body{
     left: 37%;
     border-radius: 40px;
 }
-.fondo-editar{
-    position:absolute;
+
+.fondo-editar {
+    position: absolute;
     background-color: rgba(57, 58, 57, 0.774);
     width: 37%;
     text-align: center;
@@ -84,72 +85,151 @@ body{
     border-radius: 40px;
 }
 
-img.logo{
+img.logo {
     height: 30%;
     width: 50%;
 }
 
-.foto-perro{
+.foto-perro {
     max-width: 200px;
     max-height: 100px;
 }
 
-.titulos{
+.titulos {
     color: #000000;
     margin: auto;
     text-align: center;
 }
-#Boton-Volver{
-    background-color: rgb(136, 131, 113) ;
+
+#Boton-Volver {
+    background-color: rgb(136, 131, 113);
     width: 100px;
     height: 25px;
     border-radius: 20px;
     transition: background-color 0.5s;
 }
-#Boton-Volver:hover{
+
+#Boton-Volver:hover {
     background-color: rgb(88, 86, 72);
 }
-#Boton-Buscar{
-    background-color: rgb(136, 131, 113) ;
+
+#Boton-Volver-EditarPerro {
+    background-color: rgb(136, 131, 113);
+    width: 100px;
+    height: 25px;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 25px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.5s;
+}
+
+#Boton-Volver-EditarPerro:hover {
+    background-color: rgb(88, 86, 72);
+}
+
+#Boton-Buscar {
+    background-color: rgb(136, 131, 113);
     width: 100px;
     height: 25px;
     border-radius: 20px;
     transition: background-color 0.5s;
 }
-#Boton-Buscar:hover{
+
+#Boton-Buscar:hover {
     background-color: rgb(88, 86, 72);
 }
-#Boton-Añadir{
-    font-family:'Bahnschrift';
-    background-color: rgb(136, 131, 113) ;
+
+#Boton-Añadir {
+    font-family: 'Bahnschrift';
+    background-color: rgb(136, 131, 113);
     width: 150px;
     height: 45px;
     border-radius: 20px;
     transition: background-color 0.5s;
 }
-#Boton-Añadir:hover{
+
+#Boton-Añadir:hover {
     background-color: rgb(88, 86, 72);
 }
-#Boton-registrar{
-    background-color: rgb(136, 131, 113) ;
+
+#Boton-registrar {
+    background-color: rgb(136, 131, 113);
     border-radius: 20px;
     transition: background-color 0.5s;
 }
-#Boton-registrar:hover{
+
+#Boton-registrar:hover {
     background-color: rgb(88, 86, 72);
 }
-#buscar{
-    background-color: rgb(255, 255, 255) ;
+
+#buscar {
+    background-color: rgb(255, 255, 255);
     border-radius: 20px;
 }
-.lista{
+
+.lista {
     color: #000000;
     margin: auto;
     text-align: center;
     padding-bottom: 30px;
 }
-.espacio{
+
+.espacio {
     width: 5px;
     height: auto;
     display: inline-block;
+}
+
+/* ------------------- Media Queries for Mobile ------------------- */
+@media screen and (max-width: 1086px) {
+    body {
+        background-size: 100px 100px;
+    }
+
+    .fondo, .fondo-lista, .fondo-sesion, .fondo-editar {
+        width: 90%;
+        left: 5%;
+        border-radius: 20px;
+    }
+
+    table {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    img.logo {
+        height: 30%;
+        width: 50%;
+    }
+
+    .foto-perro {
+        max-width: 100%;
+        height: auto;
+    }
+
+    input, button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #Boton-Añadir, #Boton-Volver, #Boton-registrar {
+        width: 100%;
+        height: 40px;
+    }
+
+    .titulos {
+        font-size: 20px;
+    }
 }

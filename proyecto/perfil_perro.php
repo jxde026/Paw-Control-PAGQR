@@ -10,9 +10,10 @@
     }
 
 
-    $conn = mysqli_connect("localhost","root","","proyecto") or die ("Error en la conexión");
+    $conn = mysqli_connect("sql311.infinityfree.com", "if0_37488786", "XpzOBiDgIP", "if0_37488786_proyecto") or die("Error en la conexión");
+    mysqli_set_charset($conn, "utf8mb4");
     $usuario = $_SESSION["usuario"];
-    $mascota_id = intval($_GET['id']); //convertir a integer para evitar inyeccion de sql
+    $mascota_id = intval($_GET['codigoperro']); //convertir a integer para evitar inyeccion de sql
 
     // Consulta para obtener la información del perro por su ID
     $sql = "SELECT * FROM perros WHERE codigoperro = ?";
@@ -38,9 +39,10 @@
 </head>
 <body>
     <button id="Boton-Volver"><a href="lista_perro.php">Volver</a></button>
-    <button id='Boton-Añadir' method=POST name="editar"><a href='editar_perro.php'>Editar perfil</a></button>
+    <button id='Boton-Añadir'><a href="editar_perro.php?codigoperro=<?php echo $perro['codigoperro']; ?>">Editar perfil</a></button>
     <div class="fondo-editar">
     <h1>Perfil de <?php echo $perro['nombreperro']; ?></h1>
+    <div style='overflow-x:auto;'>
     <table align="center" border=1>
         <tr>
             <th>Foto</th>
@@ -99,6 +101,7 @@
             <td><?php echo $perro['Refuerzo_triple']; ?></td>
         </tr>
     </table>
+    </div>
     <br>
     </div>
 </body>
